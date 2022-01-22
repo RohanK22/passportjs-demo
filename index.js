@@ -34,12 +34,12 @@ app.get('/protected', isLoggedIn, (req, res) => {
 app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
 
 // Callback 
-app.get('/auth/google/callback', (req, res) => {
+app.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/protected',
         failureRedirect: '/auth/failure'
-    });
-});
+    })
+);
 
 app.get('/auth/failure', (req, res) => {
     res.send('Failed to Authenticate');

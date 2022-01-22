@@ -3,6 +3,8 @@ require('dotenv').config();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
+console.log(process.env.GOOGLE_CLIENT_ID)
+
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -11,6 +13,7 @@ passport.use(new GoogleStrategy({
 },
     function (request, accessToken, refreshToken, profile, done) {
         // User.findOrCreate({ googleId: profile.id }, function (err, user) { // DB 
+        console.log(profile);
         return done(null, profile);
         // });
     }
